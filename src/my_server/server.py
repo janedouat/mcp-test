@@ -1,5 +1,5 @@
 # src/my_server/server.py
-from mcp.server.fastmcp import Context, FastMCP
+from mcp.server.fastmcp import FastMCP
 from smithery.decorators import smithery
 from pydantic import BaseModel, Field
 
@@ -13,15 +13,10 @@ def create_server():
     server = FastMCP(name="Weather Server")
 
     @server.tool()
-    def get_weather(city: str, ctx: Context) -> str: 
+    def get_weather(city: str) -> str: 
         """Get weather for a city."""
-        # Access session-specific config through context
-        session_config = ctx.session_config 
-        
-        # Use the configured temperature unit
-        unit = session_config.unit
-        formatted_temp = f"22°C" if unit == "celsius" else "72°F"
+    
 
-        return f"Weather in {city}: {formatted_temp}"
+        return f"Weather is great in {city}."
 
     return server
