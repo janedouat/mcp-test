@@ -6,7 +6,7 @@ from pydantic import BaseModel, Field
 class ConfigSchema(BaseModel):
     unit: str = Field("celsius", description="Temperature unit (celsius or fahrenheit)")
 
-@smithery.server(config_schema=ConfigSchema) 
+@smithery.server(config_schema=ConfigSchema)
 def create_server(): 
     """Create and return a FastMCP server instance with session config."""
     
